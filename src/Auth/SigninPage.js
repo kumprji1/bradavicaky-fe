@@ -17,18 +17,21 @@ const SigninPage = () => {
   };
 
   const postLoginHandler = async (values) => {
-    // Retrieving user data
-    const responseData = await sendRequest(
-      "http://localhost:5000/api/auth/login",
-      "POST",
-      JSON.stringify({
-        username: values.username,
-        password: values.password,
-      }),
-      {
-        "Content-type": "application/json",
-      }
-    );
+    let responseData;
+    try {
+      // Retrieving user data
+      responseData = await sendRequest(
+        "http://localhost:5000/api/auth/login",
+        "POST",
+        JSON.stringify({
+          username: values.username,
+          password: values.password,
+        }),
+        {
+          "Content-type": "application/json",
+        }
+      );
+    } catch (err) {}
 
     // Login in client
     auth.login(

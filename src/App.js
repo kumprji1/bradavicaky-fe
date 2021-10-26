@@ -14,6 +14,9 @@ import SignupPupilPage from "./Admin/pages/SignupPupilPage";
 // Components
 import Navbar from "./shared/components/Navbar/Navbar";
 
+// Utils 
+import { Role } from "./utils/roles";
+
 import "./App.css";
 
 function App() {
@@ -27,9 +30,9 @@ function App() {
           <Navbar />
           <Switch>
             <Route path="/registrace-admina" component={SignupAdminPage} />
-            <Route path="/registrace-zaka" component={SignupPupilPage} />
-            <Route path="/prihlaseni" component={SigninPage} />
-            <Route path="/" component={SigninPage} />
+            {auth.role === Role.ADMIN && <Route path="/registrace-zaka" component={SignupPupilPage} />}
+            {!auth.token &&<Route path="/prihlaseni" component={SigninPage} />}
+            {/* <Route path="/" component={SigninPage} /> */}
           </Switch>
         </Router>
       </div>
