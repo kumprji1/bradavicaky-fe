@@ -1,45 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 
 // Hooks
-import { useHttp } from '../../hooks/http-hook'
+import { useHttp } from "../../hooks/http-hook";
 
 const SignupPupilPage = () => {
-    const { sendRequest } = useHttp();
+  const history = useHistory();
+  const [responseMsg, setResponseMsg] = useState('');
+  const { sendRequest, error } = useHttp();
 
-    const formInitialValues = {
-      username: "",
-      name: "",
-      surname: "",
-      password: "",
-      rePassword: "",
-    };
-    const postRegisterHandler = async (values) => {
+  const formInitialValues = {
+    username: "",
+    name: "",
+    surname: "",
+    password: "",
+    rePassword: "",
+    college: "nebelvir",
+  };
+  const postRegisterHandler = async (values) => {
+    try {
       const response = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/api/admin/register-pupil`,
         "POST",
         JSON.stringify(values),
         {
-            'content-type': 'application/json'
+          "content-type": "application/json",
         }
       );
-    };
-  
-    return (
-      <div>
-        <p>Registrace žáka</p>
-        <Formik initialValues={formInitialValues} onSubmit={postRegisterHandler}>
-          <Form>
-            <Field name="username" type="text" placeholder="Uživatelské jméno"/>
-            <Field name="name" type="text" placeholder="Jméno" />
-            <Field name="surname" type="text" placeholder="Příjmení" />
-            <Field name="password" type="password" placeholder="Heslo" />
-            <Field name="rePassword" type="password" placeholder=" Heslo znovu" />
-            <button type="submit">Registrace</button>
-          </Form>
-        </Formik>
-      </div>
-    );
-  }
+        setResponseMsg(response.msg)
+        setTimeout(() => history.push('/'), 1000)
+    } catch (err) {}
+  };
+  return (
+    <div className="form--wrapper">
+      <Formik initialValues={formInitialValues} onSubmit={postRegisterHandler}>
+        <Form className="custom_form">
+          <Field type="hidden" />
+          <Field
+            className="text-input"
+            name="username"
+            type="text"
+            placeholder="Uživatelské jméno"
+          />
+          <Field
+            className="text-input"
+            name="name"
+            type="text"
+            placeholder="Jméno"
+          />
+          <Field
+            className="text-input"
+            name="surname"
+            type="text"
+            placeholder="Příjmení"
+          />
+          <Field
+            className="text-input"
+            name="password"
+            type="password"
+            placeholder="Heslo"
+          />
+          <Field
+            className="text-input"
+            name="rePassword"
+            type="password"
+            placeholder=" Heslo znovu"
+          />
+          <Field as="select" name="college">
+            <option value="nebelvír">Nebelvír</option>
+            <option value="mrzimor">Mrzimor</option>
+            <option value="havraspár">Havraspár</option>
+            <option value="zmijozel">Zmijozel</option>
+          </Field>
+          <button className="button-submit" type="submit">
+            Registrace
+          </button>
+          <p className="responseMsg">{responseMsg}{error}</p>
+        </Form>
+      </Formik>
+    </div>
+  );
+};
 
-export default SignupPupilPage
+export default SignupPupilPage;

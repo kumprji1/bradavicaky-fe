@@ -26,13 +26,13 @@ export const useHttp = () => {
         );
 
         if (!response.ok) {
-          throw new Error(responseData.message);
+          throw new Error(responseData.msg);
         }
 
         setIsLoading(false);
         return responseData;
       } catch (err) {
-        setError(err.message);
+        setError(err.msg);
         setIsLoading(false);
         throw err;
       }

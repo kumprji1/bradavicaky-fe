@@ -2,14 +2,90 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 100%;
+}
+
+*:focus {
+    outline: none;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #201e2b;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #464353 inset !important;
+  -webkit-text-fill-color: #d6e0e9 !important;
+  -webkit-text-size-adjust: none;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* HTTPs */
+
+.responseMsg {
+    color: #d6e0e9;
+    position: absolute;
+    top: calc(100% + 10px);
+}
+
+/* ========== FORMS =========== */
+
+.form--wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 5px;
+  }
+  
+.custom_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+.text-input {
+    width: 100%;
+    background-color: #464353;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    color: #d6e0e9;
+    /* Change the white to any color */
+  }
+  
+  .button-submit {
+    background-color: #3e3572;
+    color: #d6e0e9;
+    width: 50%;
+    padding: 0.5rem 1rem;
+    outline: none;
+    border: none;
+    /* border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: 300;
+  }
+
+  select {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      background-color: #464353;
+      color: #d6e0e9;
+    }
+  

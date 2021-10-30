@@ -7,6 +7,8 @@ import { useHttp } from "../hooks/http-hook";
 // Contexts
 import { AuthContext } from "../contexts/AuthContext";
 
+import './SigninPage.css'
+
 const SigninPage = () => {
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttp();
@@ -45,12 +47,12 @@ const SigninPage = () => {
   };
 
   return (
-    <div>
+    <div className="form--wrapper">
       <Formik initialValues={formInitialValues} onSubmit={postLoginHandler}>
-        <Form>
-          <Field name="username" type="text" placeholder="Uživatelské jméno" />
-          <Field name="password" type="password" placeholder="Heslo" />
-          <button type="submit">Přihlásit se</button>
+        <Form className="custom_form">
+          <Field className="text-input" name="username" type="text" placeholder="Uživatelské jméno" />
+          <Field className="text-input" name="password" type="password" placeholder="Heslo" />
+          <button className="button-submit" type="submit">Alohomora</button>
         </Form>
       </Formik>
     </div>

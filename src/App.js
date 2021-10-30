@@ -10,6 +10,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import SigninPage from "./Auth/SigninPage";
 import SignupAdminPage from "./Auth/SignupAdminPage";
 import SignupPupilPage from "./Admin/pages/SignupPupilPage";
+import PupilsPage from "./Admin/pages/PupilsPage";
 
 // Components
 import Navbar from "./shared/components/Navbar/Navbar";
@@ -31,7 +32,9 @@ function App() {
           <Switch>
             <Route path="/registrace-admina" component={SignupAdminPage} />
             {auth.role === Role.ADMIN && <Route path="/registrace-zaka" component={SignupPupilPage} />}
+            {auth.role === Role.ADMIN && <Route path="/" component={PupilsPage} />}
             {!auth.token &&<Route path="/prihlaseni" component={SigninPage} />}
+            {!auth.token &&<Route path="/" component={SigninPage} />}
             {/* <Route path="/" component={SigninPage} /> */}
           </Switch>
         </Router>
