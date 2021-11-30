@@ -17,7 +17,6 @@ const SignupAdminPage = () => {
     rePassword: "",
   };
   const postRegisterHandler = async (values) => {
-    console.log("Následnuje odeslání požadavku registrace admina");
     try {
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/api/auth/register-admin`,

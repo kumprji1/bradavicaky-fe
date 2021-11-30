@@ -23,7 +23,7 @@ const SigninPage = () => {
     try {
       // Retrieving user data
       responseData = await sendRequest(
-        "http://localhost:5000/api/auth/login",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
         "POST",
         JSON.stringify({
           username: values.username,

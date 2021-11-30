@@ -29,7 +29,7 @@ const SignupPupilPage = () => {
         }
       );
         setResponseMsg(response.msg)
-        setTimeout(() => history.push('/'), 1000)
+        // setTimeout(() => history.push('/'), 1000)
     } catch (err) {}
   };
   return (

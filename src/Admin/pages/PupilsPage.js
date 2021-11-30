@@ -67,7 +67,7 @@ const PupilsPage = () => {
     return pupils.map((pupil) => (
       <li key={pupil._id} className="pupils_page--pupil">
         <span className="pupils_page--pupil__name">
-          {pupil.surname} {pupil.name}
+          {pupil.name} {pupil.surname}
         </span>
         <div className="pupils_page--pupil--points_wrapper">
           <button

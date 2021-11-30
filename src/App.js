@@ -11,6 +11,8 @@ import SigninPage from "./Auth/SigninPage";
 import SignupAdminPage from "./Auth/SignupAdminPage";
 import SignupPupilPage from "./Admin/pages/SignupPupilPage";
 import PupilsPage from "./Admin/pages/PupilsPage";
+import AddProductPage from "./Admin/pages/AddProductPage";
+import ProductsPage from "./Admin/pages/ProductsPage";
 
 // Components
 import Navbar from "./shared/components/Navbar/Navbar";
@@ -32,6 +34,8 @@ function App() {
           <Switch>
             <Route path="/registrace-admina" component={SignupAdminPage} />
             {auth.role === Role.ADMIN && <Route path="/registrace-zaka" component={SignupPupilPage} />}
+            {auth.role === Role.ADMIN && <Route path="/pridat-produkt" component={AddProductPage} />}
+            {auth.token && <Route path="/odmeny" component={ProductsPage} />}
             {auth.role === Role.ADMIN && <Route path="/" component={PupilsPage} />}
             {!auth.token &&<Route path="/prihlaseni" component={SigninPage} />}
             {!auth.token &&<Route path="/" component={SigninPage} />}

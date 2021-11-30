@@ -30,7 +30,22 @@ const Navbar = () => {
       >
         Seznam žáků
       </NavLink>,
-  
+          <NavLink
+          key="2"
+          className="mobile_nav__link"
+          to="/pridat-produkt"
+          onClick={() => setShow(false)}
+        >
+          Přidat produkt
+        </NavLink> ,
+        <NavLink
+        key="3"
+        className="mobile_nav__link"
+        to="/odmeny"
+        onClick={() => setShow(false)}
+      >
+        Odměny
+      </NavLink>
   ];
 
   const pupilsLinks = (
