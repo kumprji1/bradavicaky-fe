@@ -20,7 +20,7 @@ const AddProductPage = () => {
 
   const postAddProduct = async (values) => {
     try {
-      const response = await sendRequest(
+      await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/api/admin/add-product`,
         "POST",
         JSON.stringify(values),

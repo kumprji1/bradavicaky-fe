@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Formik, Form, Field } from "formik";
+import { useHistory } from "react-router-dom";
 
 // Hooks
 import { useHttp } from "../hooks/http-hook";
@@ -7,11 +8,15 @@ import { useHttp } from "../hooks/http-hook";
 // Contexts
 import { AuthContext } from "../contexts/AuthContext";
 
+// Utils
+import { Role } from "../utils/roles";
+
 import './SigninPage.css'
 
 const SigninPage = () => {
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttp();
+  const history = useHistory();
 
   const formInitialValues = {
     username: "",
@@ -44,6 +49,9 @@ const SigninPage = () => {
       responseData.role,
       responseData.token
     );
+
+    // Redirect for pupil and teacher(admin)
+    if (responseData.role === Role.PUPIL) history.push('/odmeny'); else history.push('/')
   };
 
   return (

@@ -53,10 +53,18 @@ const Navbar = () => {
       <NavLink
         className="mobile_nav__link"
         key="2"
-        to="/random-user-link"
+        to="/muj-profil"
         onClick={() => setShow(false)}
       >
-        Random user link
+        Můj profil
+      </NavLink>
+      <NavLink
+        className="mobile_nav__link"
+        key="3"
+        to="/odmeny"
+        onClick={() => setShow(false)}
+      >
+        Odměny
       </NavLink>
     </Fragment>
   );
@@ -79,7 +87,7 @@ const Navbar = () => {
           {/* Non-auth nav items */}
           {!auth.token && (
             <NavLink
-            key="3"
+            key="100"
               className="mobile_nav__link"
               to="/prihlaseni"
               onClick={() => setShow(false)}
@@ -97,7 +105,7 @@ const Navbar = () => {
           {/* Auth nav items */}
           {auth.token && (
             <Link
-            key="4"
+            key="101"
               className="mobile_nav__link"
               to="/prihlaseni"
               onClick={() => {

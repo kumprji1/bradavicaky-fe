@@ -88,6 +88,12 @@ input:-webkit-autofill:active {
     font-weight: 300;
   }
 
+  .button-submit:disabled {
+    cursor: not-allowed;
+    background-color: rgb(102, 102, 102);
+    color: rgb(194, 194, 194);
+  }
+
   select {
       width: 100%;
       padding: 0.5rem 1rem;

@@ -12,7 +12,7 @@ import SignupAdminPage from "./Auth/SignupAdminPage";
 import SignupPupilPage from "./Admin/pages/SignupPupilPage";
 import PupilsPage from "./Admin/pages/PupilsPage";
 import AddProductPage from "./Admin/pages/AddProductPage";
-import ProductsPage from "./Admin/pages/ProductsPage";
+import PupilsProductsPage from "./Pupil/pages/PupilsProductsPage";
 
 // Components
 import Navbar from "./shared/components/Navbar/Navbar";
@@ -35,8 +35,9 @@ function App() {
             <Route path="/registrace-admina" component={SignupAdminPage} />
             {auth.role === Role.ADMIN && <Route path="/registrace-zaka" component={SignupPupilPage} />}
             {auth.role === Role.ADMIN && <Route path="/pridat-produkt" component={AddProductPage} />}
-            {auth.token && <Route path="/odmeny" component={ProductsPage} />}
+            {/* {auth.token && <Route path="/odmeny" component={ProductsPage} />} */}
             {auth.role === Role.ADMIN && <Route path="/" component={PupilsPage} />}
+            {auth.role === Role.PUPIL && <Route path="/odmeny" component={PupilsProductsPage} />}
             {!auth.token &&<Route path="/prihlaseni" component={SigninPage} />}
             {!auth.token &&<Route path="/" component={SigninPage} />}
             {/* <Route path="/" component={SigninPage} /> */}
