@@ -9,9 +9,9 @@ import { AuthContext } from "../../contexts/AuthContext";
 // Hooks
 import { useHttp } from "../../hooks/http-hook";
 
-import "./PupilsProductsPage.css";
+import "./Market_PupilView.css";
 
-const PupilsProductsPage = () => {
+const Market_PupilView = () => {
 
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttp();
@@ -36,10 +36,11 @@ const PupilsProductsPage = () => {
 
   return (
     <div className="custom-page--wrapper">
-      <h1 className="custom-page--title">Odměny</h1>
+      <h1 className="custom-page--title">Dostupné odměny</h1>
+      <p className="pupils_market--points">Máte {points} bodů</p>
       <AvaibleProducts points={points}/>
     </div>
   );
 };
 
-export default PupilsProductsPage;
+export default Market_PupilView;

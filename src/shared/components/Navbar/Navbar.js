@@ -53,18 +53,18 @@ const Navbar = () => {
       <NavLink
         className="mobile_nav__link"
         key="2"
-        to="/muj-profil"
+        to="/"
         onClick={() => setShow(false)}
       >
-        Můj profil
+        Profil čaroděje
       </NavLink>
       <NavLink
         className="mobile_nav__link"
         key="3"
-        to="/odmeny"
+        to="/obchod"
         onClick={() => setShow(false)}
       >
-        Odměny
+        Obchod
       </NavLink>
     </Fragment>
   );

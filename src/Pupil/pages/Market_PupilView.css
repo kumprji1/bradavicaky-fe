@@ -1,7 +1,13 @@
+.pupils_market--points {
+    color: white;
+}
+
+/* Co je níže, přijde jinam */
 .product--wrapper {
     list-style: none;
     text-align: center;
     color: #d6e0e9;
+    margin-bottom: 1rem;
 }
 
 .product--title {
