@@ -13,7 +13,9 @@ import SignupPupilPage from "./Admin/pages/SignupPupilPage";
 import PupilsPage from "./Admin/pages/PupilsPage";
 import AddProductPage from "./Admin/pages/AddProductPage";
 import Market_PupilView from "./Pupil/pages/Market_PupilView";
+import Market_AdminView from "./Admin/pages/Market_AdminView";
 import HomePupilsPage from "./Pupil/pages/HomePupilsPage";
+import OrdersToDeliverPage from "./Admin/pages/OrdersToDeliverPage";
 
 // Components
 import Navbar from "./shared/components/Navbar/Navbar";
@@ -34,12 +36,18 @@ function App() {
           <Navbar />
           <Switch>
             <Route path="/registrace-admina" component={SignupAdminPage} />
+            {/* Admin routes */}
             {auth.role === Role.ADMIN && <Route path="/registrace-zaka" component={SignupPupilPage} />}
             {auth.role === Role.ADMIN && <Route path="/pridat-produkt" component={AddProductPage} />}
-            {/* {auth.token && <Route path="/odmeny" component={ProductsPage} />} */}
+            {auth.role === Role.ADMIN && <Route path="/obchod" component={Market_AdminView} />}
+            {auth.role === Role.ADMIN && <Route path="/objednavky" component={OrdersToDeliverPage} />}
             {auth.role === Role.ADMIN && <Route path="/" component={PupilsPage} />}
+
+            {/* Pupil routes */}
             {auth.role === Role.PUPIL && <Route path="/obchod" component={Market_PupilView} />}
             {auth.role === Role.PUPIL && <Route path="/" component={HomePupilsPage} />}
+
+            {/* Auth routes */}
             {!auth.token &&<Route path="/prihlaseni" component={SigninPage} />}
             {!auth.token &&<Route path="/" component={SigninPage} />}
             {/* <Route path="/" component={SigninPage} /> */}

@@ -37,6 +37,9 @@
     border-bottom-left-radius: 5px;
 }
 
-.product_buy--wrapper {
+.product_buttons--wrapper {
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

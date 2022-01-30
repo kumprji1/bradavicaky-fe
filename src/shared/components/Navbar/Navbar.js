@@ -33,18 +33,18 @@ const Navbar = () => {
           <NavLink
           key="2"
           className="mobile_nav__link"
-          to="/pridat-produkt"
+          to="/objednavky"
           onClick={() => setShow(false)}
         >
-          Přidat produkt
+          Objednávky
         </NavLink> ,
         <NavLink
         key="3"
         className="mobile_nav__link"
-        to="/odmeny"
+        to="/obchod"
         onClick={() => setShow(false)}
       >
-        Odměny
+        Obchod
       </NavLink>
   ];
 

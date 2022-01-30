@@ -1,25 +1,28 @@
 /*$background-color: #201e2b;*/
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 100%;
 }
 
 *:focus {
-    outline: none;
+  outline: none;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color:#201e2b /*$background-color*/;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #201e2b /*$background-color*/;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 input:-webkit-autofill,
@@ -41,87 +44,96 @@ input:-webkit-autofill:active {
 /* HTTPs */
 
 .responseMsg {
-    color: #d6e0e9;
-    position: absolute;
-    top: calc(100% + 10px);
+  color: #d6e0e9;
+  position: absolute;
+  top: calc(100% + 10px);
 }
 
 /* ========== FORMS =========== */
 
 .form--wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 250px;
-    transform: translateX(-50%) translateY(-50%);
-    border-radius: 5px;
-  }
-  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 5px;
+}
+
 .custom_form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .text-input {
-    width: 100%;
-    background-color: #464353;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    color: #d6e0e9;
-    /* Change the white to any color */
-  }
-  
-  .button-submit {
-    background-color: #3e3572;
-    color: #d6e0e9;
-    width: fit-content;
-    padding: 0.5rem 1rem;
-    outline: none;
-    border: none;
-    /* border-bottom-left-radius: 5px;
+  width: 100%;
+  background-color: #464353;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  color: #d6e0e9;
+  /* Change the white to any color */
+}
+
+.button-submit {
+  background-color: #3e3572;
+  color: #d6e0e9;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  outline: none;
+  border: none;
+  /* border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px; */
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 100%;
-    font-weight: 300;
-  }
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 100%;
+  font-weight: 300;
+}
 
-  .button-submit:disabled {
-    cursor: not-allowed;
-    background-color: rgb(102, 102, 102);
-    color: rgb(194, 194, 194);
-  }
+.button-submit:disabled {
+  cursor: not-allowed;
+  background-color: rgb(102, 102, 102);
+  color: rgb(194, 194, 194);
+}
 
-  select {
-      width: 100%;
-      padding: 0.5rem 1rem;
-      margin-bottom: 1rem;
-      border-radius: 5px;
-      background-color: #464353;
-      color: #d6e0e9;
-    }
+select {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  background-color: #464353;
+  color: #d6e0e9;
+}
 
-    /* ---------- Components ----------- */
+/* ---------- Components ----------- */
 
-    /* Page-wrapper */
-    .custom-page--wrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2rem;
-  }
-   /* Title */
-   .custom-page--title {
-    padding: 0.5rem 2rem;
-    margin-bottom: 2rem;
-    font-size: 150%;
-    text-align: center;
-    background-color: #3e3572;
-    width: fit-content;
-    color:#d6e0e9; 
-    border-radius: 5px;
+/* Page-wrapper */
+.custom-page--wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+/* Title */
+.custom-page--title {
+  padding: 0.5rem 2rem;
+  margin-bottom: 2rem;
+  font-size: 150%;
+  text-align: center;
+  background-color: #3e3572;
+  width: fit-content;
+  color: #d6e0e9;
+  border-radius: 5px;
+}
+.custom-page--create_link {
+  color:white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: #3e3572;
+  border-radius: 5px;
+  margin-bottom: 1rem;
 }
