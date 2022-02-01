@@ -45,7 +45,15 @@ const Navbar = () => {
         onClick={() => setShow(false)}
       >
         Obchod
-      </NavLink>
+      </NavLink>,
+      <NavLink
+      key="3"
+      className="mobile_nav__link"
+      to="/udalosti"
+      onClick={() => setShow(false)}
+    >
+      Události  
+    </NavLink>
   ];
 
   const pupilsLinks = (
@@ -66,6 +74,14 @@ const Navbar = () => {
       >
         Obchod
       </NavLink>
+      <NavLink
+      key="4"
+      className="mobile_nav__link"
+      to="/udalosti"
+      onClick={() => setShow(false)}
+    >
+      Události  
+    </NavLink>
     </Fragment>
   );
 

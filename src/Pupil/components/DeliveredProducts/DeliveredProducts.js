@@ -29,9 +29,10 @@ const DeliveredProducts = () => {
   };
 
   useEffect(() => {
+    if (!auth.token) return
     const fetchProducts = async () => {
       const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/api/pupil/delivered-products/${auth.userId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/pupil/delivered-orders/${auth.userId}`,
         "GET",
         null,
         {
@@ -39,14 +40,14 @@ const DeliveredProducts = () => {
           Authorization: "Bearer " + auth.token,
         }
       );
-      setLoadedProducts(responseData);
+      setLoadedProducts(responseData.map(o => o.productId));
     };
 
     fetchProducts();
   }, [auth.userId, auth.token]);
 
   return (
-    <ul className="products_page--pupils">
+    <ul className="products_page--pupils row">
       {loadedProducts && productsJSX(loadedProducts)}
     </ul>
   );

@@ -37,7 +37,7 @@ const Market_PupilView = () => {
   return (
     <div className="custom-page--wrapper">
       <h1 className="custom-page--title">Dostupné odměny</h1>
-      <p className="pupils_market--points">Máte {points} bodů</p>
+      <p className="pupils_market--points">Máte {points} bradavičáků</p>
       <AvaibleProducts points={points}/>
     </div>
   );

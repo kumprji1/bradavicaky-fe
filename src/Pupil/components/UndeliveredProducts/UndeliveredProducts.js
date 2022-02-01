@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 
 // Components
-import OrderedProduct from "./OrderedProduct";
+import UndeliveredProduct from "./UndeliveredProduct";
 
 // Hooks
 import { useHttp } from "../../../hooks/http-hook";
@@ -9,7 +9,7 @@ import { useHttp } from "../../../hooks/http-hook";
 // Contexts
 import { AuthContext } from "../../../contexts/AuthContext";
 
-const OrderedProducts = () => {
+const UndeliveredProducts = () => {
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttp();
 
@@ -17,7 +17,7 @@ const OrderedProducts = () => {
 
   const productsJSX = (products) => {
     return products.map((product) => (
-      <OrderedProduct
+      <UndeliveredProduct
         key={product._id + Math.random()}
         _id={product._id}
         title={product.title}
@@ -29,9 +29,10 @@ const OrderedProducts = () => {
   };
 
   useEffect(() => {
+    if (!auth.token) return
     const fetchProducts = async () => {
       const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/api/pupil/ordered-products/${auth.userId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/pupil/undelivered-orders/${auth.userId}`,
         "GET",
         null,
         {
@@ -39,17 +40,18 @@ const OrderedProducts = () => {
           Authorization: "Bearer " + auth.token,
         }
       );
-      setLoadedProducts(responseData);
+      // Setting only product info from orders
+      setLoadedProducts(responseData.map(o => o.productId));
     };
 
     fetchProducts();
   }, [auth.userId, auth.token]);
 
   return (
-    <ul className="products_page--pupils">
+    <ul className="products_page--pupils row">
       {loadedProducts && productsJSX(loadedProducts)}
     </ul>
   );
 };
 
-export default OrderedProducts;
+export default UndeliveredProducts;

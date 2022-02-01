@@ -16,6 +16,9 @@ import Market_PupilView from "./Pupil/pages/Market_PupilView";
 import Market_AdminView from "./Admin/pages/Market_AdminView";
 import HomePupilsPage from "./Pupil/pages/HomePupilsPage";
 import OrdersToDeliverPage from "./Admin/pages/OrdersToDeliverPage";
+import Events_AdminView from "./Admin/pages/Events_AdminView";
+import AddEventPage from "./Admin/pages/AddEventPage";
+import Events_PupilView from "./Pupil/pages/Events_PupilView";
 
 // Components
 import Navbar from "./shared/components/Navbar/Navbar";
@@ -41,10 +44,13 @@ function App() {
             {auth.role === Role.ADMIN && <Route path="/pridat-produkt" component={AddProductPage} />}
             {auth.role === Role.ADMIN && <Route path="/obchod" component={Market_AdminView} />}
             {auth.role === Role.ADMIN && <Route path="/objednavky" component={OrdersToDeliverPage} />}
+            {auth.role === Role.ADMIN && <Route path="/udalosti" component={Events_AdminView} />}
+            {auth.role === Role.ADMIN && <Route path="/pridat-udalost" component={AddEventPage} />}
             {auth.role === Role.ADMIN && <Route path="/" component={PupilsPage} />}
 
             {/* Pupil routes */}
             {auth.role === Role.PUPIL && <Route path="/obchod" component={Market_PupilView} />}
+            {auth.role === Role.PUPIL && <Route path="/udalosti" component={Events_PupilView} />}
             {auth.role === Role.PUPIL && <Route path="/" component={HomePupilsPage} />}
 
             {/* Auth routes */}

@@ -6,7 +6,7 @@ import { useHttp } from "../../../hooks/http-hook";
 // Contexts
 import { AuthContext } from "../../../contexts/AuthContext";
 
-const OrderedProduct = (props) => {
+const UndeliveredProduct = (props) => {
   const { sendRequest } = useHttp();
   const auth = useContext(AuthContext)
   const refundProductHandler = async (productId) => {
@@ -34,4 +34,4 @@ const OrderedProduct = (props) => {
   );
 };
 
-export default OrderedProduct;
+export default UndeliveredProduct;

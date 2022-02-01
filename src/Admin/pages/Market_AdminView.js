@@ -29,8 +29,8 @@ const Market_AdminView = () => {
           Cena: <span className="bold">{product.price}</span>
         </div>
         <div className="product_buttons--wrapper">
-          <button className="button-submit"> Upravit</button>
-          <button className="button-submit"> Odstranit</button>
+          <button className="small-button button-edit"> Upravit</button>
+          <button className="small-button button-delete"> Odstranit</button>
         </div>
       </li>
     ));

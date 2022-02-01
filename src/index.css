@@ -35,6 +35,25 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+/* Layout */
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nowrap {
+  flex-wrap: nowrap;
+}
+
 /* Text */
 
 .bold {
@@ -76,6 +95,25 @@ input:-webkit-autofill:active {
   /* Change the white to any color */
 }
 
+.small-button {
+  outline: none;
+  border: none;
+  padding: 0.2rem 0.4rem;
+  margin: 0.1rem 0.2rem;
+  font-weight: 300;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.button-edit {
+  background-color: rgb(233, 197, 131);
+}
+
+.button-delete {
+  background-color: rgb(233, 131, 131);
+  font-size: 80%;
+}
+
 .button-submit {
   background-color: #3e3572;
   color: #d6e0e9;
@@ -94,8 +132,12 @@ input:-webkit-autofill:active {
 
 .button-submit:disabled {
   cursor: not-allowed;
-  background-color: rgb(102, 102, 102);
+  background-color: #666666;
   color: rgb(194, 194, 194);
+}
+
+.datePicker {
+  margin-bottom: 1rem;
 }
 
 select {

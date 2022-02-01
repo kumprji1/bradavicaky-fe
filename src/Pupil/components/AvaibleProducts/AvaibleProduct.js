@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 // Hooks
 import { useHttp } from "../../../hooks/http-hook";
@@ -11,7 +12,10 @@ import "./AvaibleProduct.css";
 const AvaibleProduct = (props) => {
   const { sendRequest } = useHttp();
   const auth = useContext(AuthContext)
+  const history = useHistory()
+
   const buyProductHandler = async (productId) => {
+    console.log('Posíláám')
     const responseData = await sendRequest(
       `${process.env.REACT_APP_BACKEND_URL}/api/pupil/buy-product/${productId}`,
       "POST",
@@ -19,6 +23,8 @@ const AvaibleProduct = (props) => {
       { "Content-type": "application/json",
         Authorization: 'Bearer ' + auth.token }
     );
+    console.log('Vráátit na homepage')
+      history.push('/')
   };
 
   return (

@@ -1,0 +1,19 @@
+.events_page--event {
+    color: white;
+    max-width: 600px;
+    margin: 0 0.5rem 2rem 0.5rem;
+}
+
+.events_page--event_upper-wrapper {
+    background-color: #3e3572;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.events_page--event__desc {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: #464353;
+    margin-top: 0.1rem;
+    margin-bottom: 0.2rem;
+}
