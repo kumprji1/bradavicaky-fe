@@ -22,38 +22,46 @@ const Navbar = () => {
     >
       Registrace žáka
     </NavLink>,
-        <NavLink
-        key="1"
-        className="mobile_nav__link"
-        to="/"
-        onClick={() => setShow(false)}
-      >
-        Seznam žáků
-      </NavLink>,
-          <NavLink
-          key="2"
-          className="mobile_nav__link"
-          to="/objednavky"
-          onClick={() => setShow(false)}
-        >
-          Objednávky
-        </NavLink> ,
-        <NavLink
-        key="3"
-        className="mobile_nav__link"
-        to="/obchod"
-        onClick={() => setShow(false)}
-      >
-        Obchod
-      </NavLink>,
-      <NavLink
+    <NavLink
+      key="1"
+      className="mobile_nav__link"
+      to="/"
+      onClick={() => setShow(false)}
+    >
+      Seznam žáků
+    </NavLink>,
+    <NavLink
+      key="2"
+      className="mobile_nav__link"
+      to="/objednavky"
+      onClick={() => setShow(false)}
+    >
+      Objednávky
+    </NavLink>,
+    <NavLink
+      key="3"
+      className="mobile_nav__link"
+      to="/obchod"
+      onClick={() => setShow(false)}
+    >
+      Obchod
+    </NavLink>,
+    <NavLink
       key="3"
       className="mobile_nav__link"
       to="/udalosti"
       onClick={() => setShow(false)}
     >
-      Události  
-    </NavLink>
+      Události
+    </NavLink>,
+    <NavLink
+      key="3"
+      className="mobile_nav__link"
+      to="/otazky"
+      onClick={() => setShow(false)}
+    >
+      Otázky
+    </NavLink>,
   ];
 
   const pupilsLinks = (
@@ -75,13 +83,21 @@ const Navbar = () => {
         Obchod
       </NavLink>
       <NavLink
-      key="4"
-      className="mobile_nav__link"
-      to="/udalosti"
-      onClick={() => setShow(false)}
-    >
-      Události  
-    </NavLink>
+        key="4"
+        className="mobile_nav__link"
+        to="/udalosti"
+        onClick={() => setShow(false)}
+      >
+        Události
+      </NavLink>
+      <NavLink
+        key="3"
+        className="mobile_nav__link"
+        to="/otazky"
+        onClick={() => setShow(false)}
+      >
+        Otázky
+      </NavLink>
     </Fragment>
   );
 
@@ -103,7 +119,7 @@ const Navbar = () => {
           {/* Non-auth nav items */}
           {!auth.token && (
             <NavLink
-            key="100"
+              key="100"
               className="mobile_nav__link"
               to="/prihlaseni"
               onClick={() => setShow(false)}
@@ -121,7 +137,7 @@ const Navbar = () => {
           {/* Auth nav items */}
           {auth.token && (
             <Link
-            key="101"
+              key="101"
               className="mobile_nav__link"
               to="/prihlaseni"
               onClick={() => {

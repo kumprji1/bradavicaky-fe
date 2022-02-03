@@ -103,15 +103,21 @@ input:-webkit-autofill:active {
   font-weight: 300;
   border-radius: 3px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .button-edit {
   background-color: rgb(233, 197, 131);
+  color: black;
 }
 
 .button-delete {
   background-color: rgb(233, 131, 131);
   font-size: 80%;
+}
+
+.button-save {
+  background-color: rgb(148, 233, 131);
 }
 
 .button-submit {
@@ -178,4 +184,17 @@ select {
   background-color: #3e3572;
   border-radius: 5px;
   margin-bottom: 1rem;
+}
+
+/* QUESTIONS */
+
+.edit-page--answers_title {
+  padding: 0.5rem 1rem;
+  margin: 2rem 2rem;
+  font-size: 120%;
+  text-align: center;
+  background-color: #3e3572;
+  width: fit-content;
+  color:#d6e0e9; 
+  border-radius: 5px;
 }

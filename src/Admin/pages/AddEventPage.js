@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // DatePicker
 import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
@@ -13,27 +14,29 @@ import "./AddProductPage.css";
 registerLocale("cs", cs);
 
 const AddEventPage = () => {
-    const { sendRequest } = useHttp();
+  const { sendRequest } = useHttp();
+  const history = useHistory();
 
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [date, setDate] = useState(new Date());
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState(new Date());
 
   const postAddEvent = async (e) => {
-      e.preventDefault()
+    e.preventDefault();
     try {
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/api/admin/add-event`,
         "POST",
         JSON.stringify({
-            title: title,
-            description: description,
-            date: date
+          title: title,
+          description: description,
+          date: date,
         }),
         {
           "content-type": "application/json",
         }
       );
+      history.push("/udalosti");
     } catch (err) {}
   };
 
@@ -43,7 +46,7 @@ const AddEventPage = () => {
       <form className="column" onSubmit={postAddEvent}>
         <input
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
           className="text-input"
           name="title"
           type="text"
@@ -51,13 +54,18 @@ const AddEventPage = () => {
         />
         <input
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
           className="text-input"
           name="description"
           type="text"
           placeholder="Popis"
         />
-        <DatePicker className="datePicker" selected={date} onChange={(date) => setDate(date)} locale="cs"/>
+        <DatePicker
+          className="datePicker"
+          selected={date}
+          onChange={(date) => setDate(date)}
+          locale="cs"
+        />
         <button className="button-submit" type="submit">
           Odeslat
         </button>
