@@ -95,6 +95,11 @@ input:-webkit-autofill:active {
   /* Change the white to any color */
 }
 
+.small-button:disabled {
+  cursor:not-allowed;
+  background-color: #ccc;
+}
+
 .small-button {
   outline: none;
   border: none;
