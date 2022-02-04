@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useHttp } from "../../hooks/http-hook";
 
+import './TryLuckPage.css'
+
 const TryLuckPage = () => {
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttp();
@@ -29,7 +31,7 @@ const TryLuckPage = () => {
 
   const postRoll = async () => {
     try {
-      await sendRequest(
+      const responseData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/api/pupil/roll`,
         "POST",
         null,
@@ -39,6 +41,7 @@ const TryLuckPage = () => {
         }
       );
       setCanRoll(false)
+      setReward(responseData.text)
     } catch (err) {}
   };
 
@@ -48,6 +51,7 @@ const TryLuckPage = () => {
       <button className="small-button button-save" disabled={!canRoll} onClick={postRoll}>
         Zkusit štěstí
       </button>
+      <h2 className="reward">{reward}</h2>
     </div>
   );
 };
