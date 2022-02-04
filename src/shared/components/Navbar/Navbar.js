@@ -98,6 +98,14 @@ const Navbar = () => {
       >
         Otázky
       </NavLink>
+      <NavLink
+        key="3"
+        className="mobile_nav__link"
+        to="/stesti"
+        onClick={() => setShow(false)}
+      >
+        Zkus štěstí
+      </NavLink>
     </Fragment>
   );
 

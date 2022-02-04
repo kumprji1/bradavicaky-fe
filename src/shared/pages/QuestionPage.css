@@ -3,3 +3,12 @@
     color: white;
     font-style: italic;
 }
+
+.question_page--votes {
+    padding-left: 0.5rem;
+}
+
+.question_answers_votes {
+    display: flex;
+    align-items: center;
+}

@@ -23,6 +23,7 @@ import QuestionsPage_AdminView from "./Admin/pages/QuestionsPage_AdminView";
 import AddQuestionPage from "./Admin/pages/AddQuestionPage";
 import EditQuestionPage from "./Admin/pages/EditQuestionPage";
 import QuestionPage from "./shared/pages/QuestionPage";
+import TryLuckPage from "./Pupil/pages/TryLuckPage";
 
 // Components
 import Navbar from "./shared/components/Navbar/Navbar";
@@ -62,6 +63,7 @@ function App() {
             {/* Pupil routes */}
             {auth.role === Role.PUPIL && <Route path="/obchod" component={Market_PupilView} />}
             {auth.role === Role.PUPIL && <Route path="/udalosti" component={Events_PupilView} />}
+            {auth.role === Role.PUPIL && <Route path="/stesti" component={TryLuckPage} />}
             {auth.role === Role.PUPIL && <Route path="/" component={HomePupilsPage} />}
            
             {/* no-Auth routes */}
