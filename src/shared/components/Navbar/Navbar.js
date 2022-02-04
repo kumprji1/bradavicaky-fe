@@ -153,7 +153,7 @@ const Navbar = () => {
                 setShow(false);
               }}
             >
-              Odhlásit se
+              Odhlásit se ({auth.username})
             </Link>
           )}
         </ul>

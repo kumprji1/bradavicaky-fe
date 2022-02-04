@@ -52,6 +52,7 @@ const TryLuckPage = () => {
         Zkusit štěstí
       </button>
       <h2 className="reward">{reward}</h2>
+      {!canRoll && <h2 className="reward">Zkus to zase zítra</h2>}
     </div>
   );
 };

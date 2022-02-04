@@ -28,6 +28,20 @@ const EditQuestionPage = () => {
 
     fetchQuestionData();
   }, [auth.token]);
+
+  const postEditQuestionText = async () => {
+    await sendRequest(
+      `${process.env.REACT_APP_BACKEND_URL}/api/admin/edit-question/${questionId}`,
+      "PATCH",
+      JSON.stringify({
+        text: loadedQuestion
+      }),
+      {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + auth.token,
+      }
+    );
+  }
   return (
     <div className="add_product--wrapper">
       <h1 className="add_product--title">Editace otázky</h1>
@@ -47,7 +61,7 @@ const EditQuestionPage = () => {
               type="text"
               placeholder="Otázka"
             />
-            <button className="small-button button-save" type="submit">
+            <button className="small-button button-save" type="submit" onClick={postEditQuestionText}>
               Uložit nové znění otázky
             </button>
           </form>

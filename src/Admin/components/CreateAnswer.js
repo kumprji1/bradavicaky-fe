@@ -28,7 +28,7 @@ const CreateAnswer = ({ questionId, addAnswerLocal, deleteAnswerLocal}) => {
   
   return (
     <div>
-      <form onSubmit={e => e.preventDefault()}>
+      <form onSubmit={e => e.preventDefault()} className="column">
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}

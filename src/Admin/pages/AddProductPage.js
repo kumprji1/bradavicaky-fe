@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Formik, Form, Field } from "formik";
+import { useHistory } from 'react-router-dom'
 
 // Hooks
 import { useHttp } from '../../hooks/http-hook'
@@ -9,6 +10,7 @@ import "./AddProductPage.css";
 
 const AddProductPage = () => {
     const { sendRequest } = useHttp()
+    const history = useHistory();
 
   const formInitialValues = {
     title: "",
@@ -28,6 +30,7 @@ const AddProductPage = () => {
           "content-type": "application/json",
         }
       );
+      history.push('/obchod')
     } catch (err) {}
   };
 

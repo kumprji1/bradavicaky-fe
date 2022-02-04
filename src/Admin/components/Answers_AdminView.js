@@ -68,7 +68,7 @@ const Answers_AdminView = ({ questionId }) => {
   };
 
   return (
-    <div>
+    <div className="column">
       <h2 className="edit-page--answers_title">Odpovědi na otázku</h2>
       {loadedAnswers && answersJSX(loadedAnswers)}
       <h3 className="edit-page--answers_title" type="submit">

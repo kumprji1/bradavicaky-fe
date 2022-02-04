@@ -53,9 +53,9 @@ const Events_AdminView = () => {
             {event.description}
         </div>
         <div className="events_page--event__buttons">
-            <button className="small-button button-edit">
+            {/* <button className="small-button button-edit">
                 Upravit
-            </button>
+            </button> */}
             <button className="small-button button-delete" onClick={() => deleteEventHandler(event._id)}>
                 Odstranit
             </button>

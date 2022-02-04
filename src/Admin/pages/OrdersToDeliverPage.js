@@ -78,6 +78,7 @@ const OrdersToDeliverPage = () => {
           Authorization: "Bearer " + auth.token,
         }
       );
+      setLoadedOrders(orders => orders.filter(o => o._id !== orderId))
     } catch (err) {}
   };
 

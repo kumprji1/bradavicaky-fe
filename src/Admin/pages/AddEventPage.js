@@ -42,7 +42,7 @@ const AddEventPage = () => {
 
   return (
     <div className="add_product--wrapper">
-      <h1 className="add_product--title">Přidání produktu</h1>
+      <h1 className="add_product--title">Přidání události</h1>
       <form className="column" onSubmit={postAddEvent}>
         <input
           value={title}

@@ -15,6 +15,19 @@ const Market_AdminView = () => {
 
   const [loadedProducts, setLoadedProducts] = useState([]);
 
+  const disableProduct = async (id) => {
+    await sendRequest(
+      `${process.env.REACT_APP_BACKEND_URL}/api/admin/disable-product/${id}`,
+      "PATCH",
+      null,
+      {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + auth.token,
+      }
+    );
+    setLoadedProducts(prods => prods.filter(p => p._id !== id));
+  }
+
   const productsJSX = (products) => {
     return products.map((product) => (
       <li key={product._id} className="product--wrapper">
@@ -29,8 +42,8 @@ const Market_AdminView = () => {
           Cena: <span className="bold">{product.price}</span>
         </div>
         <div className="product_buttons--wrapper">
-          <button className="small-button button-edit"> Upravit</button>
-          <button className="small-button button-delete"> Odstranit</button>
+          <Link to={`/editovat-produkt/${product._id}`} className="small-button button-edit"> Upravit</Link>
+          <button onClick={() => disableProduct(product._id)} className="small-button button-delete"> Odstranit</button>
         </div>
       </li>
     ));
@@ -47,7 +60,7 @@ const Market_AdminView = () => {
           Authorization: "Bearer " + auth.token,
         }
       );
-      setLoadedProducts(responseData);
+      setLoadedProducts(responseData.filter(p => !p.isHidden));
     };
 
     fetchProducts();

@@ -12,6 +12,7 @@ import SignupAdminPage from "./Auth/SignupAdminPage";
 import SignupPupilPage from "./Admin/pages/SignupPupilPage";
 import PupilsPage from "./Admin/pages/PupilsPage";
 import AddProductPage from "./Admin/pages/AddProductPage";
+import EditProductPage from "./Admin/pages/EditProductPage";
 import Market_PupilView from "./Pupil/pages/Market_PupilView";
 import Market_AdminView from "./Admin/pages/Market_AdminView";
 import HomePupilsPage from "./Pupil/pages/HomePupilsPage";
@@ -52,6 +53,7 @@ function App() {
             {/* Admin routes */}
             {auth.role === Role.ADMIN && <Route path="/registrace-zaka" component={SignupPupilPage} />}
             {auth.role === Role.ADMIN && <Route path="/pridat-produkt" component={AddProductPage} />}
+            {auth.role === Role.ADMIN && <Route path="/editovat-produkt/:idProduktu" component={EditProductPage} />}
             {auth.role === Role.ADMIN && <Route path="/obchod" component={Market_AdminView} />}
             {auth.role === Role.ADMIN && <Route path="/objednavky" component={OrdersToDeliverPage} />}
             {auth.role === Role.ADMIN && <Route path="/udalosti" component={Events_AdminView} />}
