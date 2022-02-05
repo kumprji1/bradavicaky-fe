@@ -6,6 +6,8 @@ import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import cs from "date-fns/locale/cs";
 
+import ErrorModal from "../../shared/components/Error/ErrorModal";
+
 // Hooks
 import { useHttp } from "../../hooks/http-hook";
 
@@ -14,7 +16,7 @@ import "./AddProductPage.css";
 registerLocale("cs", cs);
 
 const AddEventPage = () => {
-  const { sendRequest } = useHttp();
+  const { sendRequest, error, clearError } = useHttp();
   const history = useHistory();
 
   const [title, setTitle] = useState("");
@@ -36,7 +38,7 @@ const AddEventPage = () => {
           "content-type": "application/json",
         }
       );
-      history.push("/udalosti");
+      // history.push("/udalosti");
     } catch (err) {}
   };
 
@@ -70,7 +72,8 @@ const AddEventPage = () => {
           Odeslat
         </button>
       </form>
-    </div>
+      <ErrorModal error={error} onClear={clearError} /> 
+      </div>
   );
 };
 

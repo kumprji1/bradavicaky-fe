@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useHttp } from "../../hooks/http-hook";
+import { Role } from "../../utils/roles";
 
 import "./QuestionPage.css";
 
@@ -97,7 +98,7 @@ const QuestionPage = () => {
         <div className="question__link" key={a._id}>
           <div className="row question_answers_votes">
             <div className="questions_page--question__text">{a.text}</div>
-            {canVote && (
+            {canVote && auth.role === Role.PUPIL && (
               <button
                 className="small-button button-save"
                 onClick={() => postVote(a._id)}
