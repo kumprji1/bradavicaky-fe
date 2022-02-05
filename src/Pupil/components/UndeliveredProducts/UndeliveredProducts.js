@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 
 // Components
 import UndeliveredProduct from "./UndeliveredProduct";
+import Spinner from "../../../shared/components/Spinner/Spinner";
 
 // Hooks
 import { useHttp } from "../../../hooks/http-hook";
@@ -11,7 +12,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 
 const UndeliveredProducts = () => {
   const auth = useContext(AuthContext);
-  const { sendRequest } = useHttp();
+  const { sendRequest, isLoading } = useHttp();
 
   const [loadedProducts, setLoadedProducts] = useState([]);
 
@@ -50,6 +51,7 @@ const UndeliveredProducts = () => {
   return (
     <ul className="products_page--pupils row">
       {loadedProducts && productsJSX(loadedProducts)}
+      {isLoading && <Spinner />}
     </ul>
   );
 };

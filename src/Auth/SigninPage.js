@@ -11,11 +11,12 @@ import { AuthContext } from "../contexts/AuthContext";
 // Utils
 import { Role } from "../utils/roles";
 
-import './SigninPage.css'
+import "./SigninPage.css";
+import Spinner from "../shared/components/Spinner/Spinner";
 
 const SigninPage = () => {
   const auth = useContext(AuthContext);
-  const { sendRequest } = useHttp();
+  const { sendRequest, isLoading, error } = useHttp();
   const history = useHistory();
 
   const formInitialValues = {
@@ -51,18 +52,33 @@ const SigninPage = () => {
     );
 
     // Redirect for pupil and teacher(admin)
-    if (responseData.role === Role.PUPIL) history.push('/odmeny'); else history.push('/')
+    if (responseData.role === Role.PUPIL) history.push("/odmeny");
+    else history.push("/");
   };
 
   return (
-    <div className="form--wrapper">
+    <div className="form--wrapper column">
       <Formik initialValues={formInitialValues} onSubmit={postLoginHandler}>
         <Form className="custom_form">
-          <Field className="text-input" name="username" type="text" placeholder="Uživatelské jméno" />
-          <Field className="text-input" name="password" type="password" placeholder="Heslo" />
-          <button className="button-submit" type="submit">Alohomora</button>
+          <Field
+            className="text-input"
+            name="username"
+            type="text"
+            placeholder="Uživatelské jméno"
+          />
+          <Field
+            className="text-input"
+            name="password"
+            type="password"
+            placeholder="Heslo"
+          />
+          <button className="button-submit" type="submit">
+            Alohomora
+          </button>
         </Form>
       </Formik>
+      <p>{error}</p>
+      <div className="spinner--wrapper"> {isLoading && <Spinner />}</div>
     </div>
   );
 };
