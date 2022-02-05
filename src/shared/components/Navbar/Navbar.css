@@ -1,6 +1,6 @@
 .mobile_nav--wrapper {
   position: fixed;
-  z-index: 5;
+  z-index: 15;
   top: 88px;
   width: calc(100vw - 55px);
   transform: translateX(calc(-100% - 1px));

@@ -1,5 +1,6 @@
 import { Fragment, useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import NavBackdrop from "./NavBackdrop";
 
 // Contexts
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -116,6 +117,7 @@ const Navbar = () => {
     <aside
       className={`mobile_nav--wrapper ${show ? "mobile_nav--showed" : ""}`}
     >
+      {show && <NavBackdrop onClick={() => setShow(false)}/>}
       <div
         className="mobile_nav--show_button"
         onClick={() => setShow((show) => !show)}
