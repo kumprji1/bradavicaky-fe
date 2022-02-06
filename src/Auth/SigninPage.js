@@ -41,21 +41,20 @@ const SigninPage = () => {
           "Content-type": "application/json",
         }
       );
+      // Login in client
+      auth.login(
+        responseData._id,
+        responseData.username,
+        responseData.name,
+        responseData.surname,
+        responseData.role,
+        responseData.token
+      );
+
+      // Redirect for pupil and teacher(admin)
+      if (responseData.role === Role.PUPIL) history.push("/odmeny");
+      else history.push("/");
     } catch (err) {}
-
-    // Login in client
-    auth.login(
-      responseData._id,
-      responseData.username,
-      responseData.name,
-      responseData.surname,
-      responseData.role,
-      responseData.token
-    );
-
-    // Redirect for pupil and teacher(admin)
-    if (responseData.role === Role.PUPIL) history.push("/odmeny");
-    else history.push("/");
   };
 
   return (

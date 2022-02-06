@@ -29,7 +29,7 @@ const PupilsPage = () => {
     };
     fetchPupils();
     console.log("fetchPupils()");
-  }, []);
+  }, [auth.token]);
 
   const addPointsHandler = async (pupilsId, points) => {
     const response = await sendRequest(

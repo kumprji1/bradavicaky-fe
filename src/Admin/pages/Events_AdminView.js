@@ -44,8 +44,8 @@ const Events_AdminView = () => {
           Authorization: "Bearer " + auth.token,
         }
       );
+      setloadedEvents(loadedEvents.filter((e) => e._id !== id));
     } catch (err) {}
-    setloadedEvents(loadedEvents.filter((e) => e._id !== id));
   };
 
   const eventsJSX = (events) => {
