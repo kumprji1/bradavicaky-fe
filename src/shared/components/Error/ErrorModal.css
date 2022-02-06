@@ -9,7 +9,7 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   background: rgb(211, 211, 211);
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26); */
+
   border-radius: 5px;
 }
 
@@ -48,29 +48,6 @@
 @media (min-width: 768px) {
   .error-modal {
     top: 30vh;
-    /* left: calc(50% - 20rem);
-    width: 40rem; */
+
   }
-}
-
-.error-modal-enter {
-  transform: translateY(-10rem);
-  opacity: 0;
-}
-
-.error-modal-enter-active {
-  transform: translateY(0);
-  opacity: 1;
-  transition: all 200ms;
-}
-
-.error-modal-exit {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.error-modal-exit-active {
-  transform: translateY(-10rem);
-  opacity: 0;
-  transition: all 200ms;
 }

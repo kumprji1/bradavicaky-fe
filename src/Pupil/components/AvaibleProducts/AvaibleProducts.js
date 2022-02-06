@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // Components
 import AvaibleProduct from "./AvaibleProduct";
@@ -6,8 +6,10 @@ import AvaibleProduct from "./AvaibleProduct";
 import { useHttp } from "../../../hooks/http-hook";
 
 import "./AvaibleProducts.css";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const AvaibleProducts = (props) => {
+  const auth = useContext(AuthContext)
   const { sendRequest } = useHttp();
 
   const [loadedProducts, setLoadedProducts] = useState([]);
@@ -29,7 +31,13 @@ const AvaibleProducts = (props) => {
   useEffect(() => {
     const fetchProducts = async () => {
       const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/api/pupil/avaible-products`
+        `${process.env.REACT_APP_BACKEND_URL}/api/pupil/avaible-products`,
+        "GET",
+        null,
+        {
+          "Content-type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        }
       );
       setLoadedProducts(responseData);
     };

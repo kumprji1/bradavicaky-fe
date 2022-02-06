@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import dayjs from "dayjs";
 
 // Hooks
 import { useHttp } from "../../hooks/http-hook";
-
+import { AuthContext } from "../../contexts/AuthContext";
 
 // import "./Events_AdminView.css";
 
 const Events_PupilView = () => {
+  const auth = useContext(AuthContext)
   const [loadedEvents, setloadedEvents] = useState([]);
   const { sendRequest } = useHttp();
 
@@ -16,7 +17,13 @@ const Events_PupilView = () => {
     const fetchEvents = async () => {
       try {
         let events = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/api/events`
+          `${process.env.REACT_APP_BACKEND_URL}/api/events`,
+          "GET",
+          null,
+          {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
         );
         setloadedEvents(events);
       } catch (err) {}
@@ -30,11 +37,11 @@ const Events_PupilView = () => {
       <li key={event._id} className="events_page--event column">
         <div className="events_page--event_upper-wrapper column">
           <div className="events_page--event__title">{event.title}</div>
-          <div className="events_page--event__date"><i>{dayjs(event.date).format('DD. MM. YYYY')}</i></div>
+          <div className="events_page--event__date">
+            <i>{dayjs(event.date).format("DD. MM. YYYY")}</i>
+          </div>
         </div>
-        <div className="events_page--event__desc">
-            {event.description}
-        </div>
+        <div className="events_page--event__desc">{event.description}</div>
       </li>
     ));
   };

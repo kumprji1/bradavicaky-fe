@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 // DatePicker
@@ -8,6 +8,8 @@ import cs from "date-fns/locale/cs";
 
 import ErrorModal from "../../shared/components/Error/ErrorModal";
 
+import { AuthContext } from "../../contexts/AuthContext";
+
 // Hooks
 import { useHttp } from "../../hooks/http-hook";
 
@@ -16,6 +18,8 @@ import "./AddProductPage.css";
 registerLocale("cs", cs);
 
 const AddEventPage = () => {
+  const auth = useContext(AuthContext);
+
   const { sendRequest, error, clearError } = useHttp();
   const history = useHistory();
 
@@ -36,9 +40,10 @@ const AddEventPage = () => {
         }),
         {
           "content-type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
-      // history.push("/udalosti");
+      history.push("/udalosti");
     } catch (err) {}
   };
 
@@ -72,7 +77,7 @@ const AddEventPage = () => {
           Odeslat
         </button>
       </form>
-      <ErrorModal error={error} onClear={clearError} /> 
+      {error && <ErrorModal error={error} onClear={clearError} />}
       </div>
   );
 };

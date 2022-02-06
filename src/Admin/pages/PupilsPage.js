@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 // Hooks
 import { useHttp } from "../../hooks/http-hook";
 
+import { AuthContext } from "../../contexts/AuthContext";
+
 import "./PupilsPage.css";
 
 const PupilsPage = () => {
+  const auth = useContext(AuthContext);
   const [loadedPupils, setLoadedPupils] = useState([]);
   const { sendRequest } = useHttp();
 
@@ -13,7 +16,13 @@ const PupilsPage = () => {
     const fetchPupils = async () => {
       try {
         let pupils = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/api/admin/pupils`
+          `${process.env.REACT_APP_BACKEND_URL}/api/admin/pupils`,
+          "GET",
+          null,
+          {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
         );
         setLoadedPupils(pupils);
       } catch (err) {}
@@ -30,7 +39,10 @@ const PupilsPage = () => {
         pupilsId,
         points,
       }),
-      { "Content-type": "application/json" }
+      {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + auth.token,
+      }
     );
     if (response.msg === "success") {
       setLoadedPupils((pupils) =>
@@ -50,7 +62,10 @@ const PupilsPage = () => {
         pupilsId,
         points,
       }),
-      { "Content-type": "application/json" }
+      {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + auth.token,
+      }
     );
     if (response.msg === "success") {
       setLoadedPupils((pupils) =>

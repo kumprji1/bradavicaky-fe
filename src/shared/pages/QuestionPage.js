@@ -4,10 +4,12 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useHttp } from "../../hooks/http-hook";
 import { Role } from "../../utils/roles";
 
+import ErrorModal from '../../shared/components/Error/ErrorModal'
+
 import "./QuestionPage.css";
 
 const QuestionPage = () => {
-  const { sendRequest } = useHttp();
+  const { sendRequest, error, clearError } = useHttp();
   const auth = useContext(AuthContext);
   const questionId = useParams().idOtazky;
 
@@ -19,16 +21,18 @@ const QuestionPage = () => {
 
   useEffect(() => {
     const fetchQuestion = async () => {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/api/question/${questionId}`,
-        "GET",
-        null,
-        {
-          "Content-type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        }
-      );
-      setLoadedQuestion(responseData);
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/api/question/${questionId}`,
+          "GET",
+          null,
+          {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
+        );
+        setLoadedQuestion(responseData);
+      } catch (err) {}
     };
 
     fetchQuestion();
@@ -36,16 +40,18 @@ const QuestionPage = () => {
 
   useEffect(() => {
     const fetchAnswers = async () => {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/api/answers-of-question/${questionId}`,
-        "GET",
-        null,
-        {
-          "Content-type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        }
-      );
-      setLoadedAnswers(responseData);
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/api/answers-of-question/${questionId}`,
+          "GET",
+          null,
+          {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
+        );
+        setLoadedAnswers(responseData);
+      } catch (err) {}
     };
 
     fetchAnswers();
@@ -53,21 +59,25 @@ const QuestionPage = () => {
 
   useEffect(() => {
     const fetchVotes = async () => {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/api/votes-of-question/${questionId}`,
-        "GET",
-        null,
-        {
-          "Content-type": "application/json",
-          Authorization: "Bearer " + auth.token,
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/api/votes-of-question/${questionId}`,
+          "GET",
+          null,
+          {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
+        );
+        // Finds if user already voted earlier
+        let foundPupilsVote = responseData.filter(
+          (v) => v.pupilId === auth.userId && v.questionId === questionId
+        );
+        if (foundPupilsVote.length === 0) {
+          setCanVote(true);
         }
-      );
-      // Finds if user already voted earlier
-      let foundPupilsVote = responseData.filter(v => v.pupilId === auth.userId && v.questionId === questionId)
-      if (foundPupilsVote.length === 0) {
-        setCanVote(true)
-      }
-      setLoadedVotes(responseData);
+        setLoadedVotes(responseData);
+      } catch (err) {}
     };
 
     fetchVotes();
@@ -85,10 +95,10 @@ const QuestionPage = () => {
         }),
         {
           "content-type": "application/json",
-          "Authorization": 'Bearer ' + auth.token
+          Authorization: "Bearer " + auth.token,
         }
       );
-      setCanVote(false)
+      setCanVote(false);
     } catch (err) {}
   };
 
@@ -106,7 +116,9 @@ const QuestionPage = () => {
                 Hlasovat
               </button>
             )}
-            <div className="question_page--votes">{loadedVotes.filter(an => an.answerId === a._id).length} hlasů</div>
+            <div className="question_page--votes">
+              {loadedVotes.filter((an) => an.answerId === a._id).length} hlasů
+            </div>
           </div>
         </div>
       </div>
@@ -123,6 +135,7 @@ const QuestionPage = () => {
         <h1 className="question-page--answers-title">Odpovědi:</h1>
         {loadedAnswers && answerJSX(loadedAnswers)}
       </div>
+      {error && <ErrorModal error={error} onClear={clearError}/>}
     </div>
   );
 };

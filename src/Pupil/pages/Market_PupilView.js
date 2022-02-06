@@ -27,6 +27,7 @@ const Market_PupilView = () => {
         null,
         {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       setPoints(responseData.points)

@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Formik, Form, Field } from "formik";
 import { useHistory } from 'react-router-dom'
 
+import ErrorModal from "../../shared/components/Error/ErrorModal";
+
 // Hooks
 import { useHttp } from '../../hooks/http-hook'
+
+import { AuthContext } from "../../contexts/AuthContext";
 
 import "./AddProductPage.css";
 
 const AddProductPage = () => {
-    const { sendRequest } = useHttp()
+  const auth = useContext(AuthContext);
+    const { sendRequest, error, clearError } = useHttp()
     const history = useHistory();
 
   const formInitialValues = {
@@ -28,6 +33,7 @@ const AddProductPage = () => {
         JSON.stringify(values),
         {
           "content-type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       history.push('/obchod')
@@ -74,6 +80,7 @@ const AddProductPage = () => {
           </button>
         </Form>
       </Formik>
+      {error && <ErrorModal error={error} onClear={clearError} />}
     </div>
   );
 };

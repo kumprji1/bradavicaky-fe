@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 
+import ErrorModal from "../../shared/components/Error/ErrorModal";
+
 import { AuthContext } from "../../contexts/AuthContext";
 import { useHttp } from "../../hooks/http-hook";
 
 const AddQuestionPage = () => {
   const auth = useContext(AuthContext);
-  const { sendRequest } = useHttp();
-  const history = useHistory()
+  const { sendRequest, error, clearError } = useHttp();
+  const history = useHistory();
 
   const [text, setText] = useState("");
 
@@ -22,10 +24,10 @@ const AddQuestionPage = () => {
         }),
         {
           "content-type": "application/json",
-          "Authorization": 'Bearer ' + auth.token
+          Authorization: "Bearer " + auth.token,
         }
       );
-        history.push('/editovat-otazku/' + response.question._id)
+      history.push("/editovat-otazku/" + response.question._id);
     } catch (err) {}
   };
 
@@ -45,6 +47,7 @@ const AddQuestionPage = () => {
           Odeslat
         </button>
       </form>
+      {error && <ErrorModal error={error} onClear={clearError} />}
     </div>
   );
 };

@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { Formik, Form, Field } from "formik";
 import { useHistory } from "react-router-dom";
 
+import Spinner from "../shared/components/Spinner/Spinner";
+import ErrorModal from "../shared/components/Error/ErrorModal";
+
 // Hooks
 import { useHttp } from "../hooks/http-hook";
 
@@ -12,11 +15,10 @@ import { AuthContext } from "../contexts/AuthContext";
 import { Role } from "../utils/roles";
 
 import "./SigninPage.css";
-import Spinner from "../shared/components/Spinner/Spinner";
 
 const SigninPage = () => {
   const auth = useContext(AuthContext);
-  const { sendRequest, isLoading, error } = useHttp();
+  const { sendRequest, isLoading, error, clearError } = useHttp();
   const history = useHistory();
 
   const formInitialValues = {
@@ -77,7 +79,7 @@ const SigninPage = () => {
           </button>
         </Form>
       </Formik>
-      <p>{error}</p>
+      {error && <ErrorModal error={error} onClear={clearError} />}
       <div className="spinner--wrapper"> {isLoading && <Spinner />}</div>
     </div>
   );

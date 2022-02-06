@@ -11,7 +11,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import "./Events_AdminView.css";
 
 const Events_AdminView = () => {
-  const auth = useContext(AuthContext)
+  const auth = useContext(AuthContext);
   const [loadedEvents, setloadedEvents] = useState([]);
   const { sendRequest } = useHttp();
 
@@ -19,7 +19,13 @@ const Events_AdminView = () => {
     const fetchEvents = async () => {
       try {
         let events = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/api/events`
+          `${process.env.REACT_APP_BACKEND_URL}/api/events`,
+          "GET",
+          null,
+          {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
         );
         setloadedEvents(events);
       } catch (err) {}
@@ -29,17 +35,18 @@ const Events_AdminView = () => {
 
   const deleteEventHandler = async (id) => {
     try {
-      const response = await sendRequest(`${process.env.REACT_APP_BACKEND_URL}/api/admin/event/${id}`,
-      'DELETE',
-      null,
-      {
-        'content-type': 'application/json',
-        'Authorization': 'Bearer ' + auth.token
-      })
-    } catch (err) {
-    }
-    setloadedEvents(loadedEvents.filter(e => e._id !== id))
-  }
+      const response = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/api/admin/event/${id}`,
+        "DELETE",
+        null,
+        {
+          "content-type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        }
+      );
+    } catch (err) {}
+    setloadedEvents(loadedEvents.filter((e) => e._id !== id));
+  };
 
   const eventsJSX = (events) => {
     console.log(events);
@@ -47,18 +54,21 @@ const Events_AdminView = () => {
       <li key={event._id} className="events_page--event column">
         <div className="events_page--event_upper-wrapper column">
           <div className="events_page--event__title">{event.title}</div>
-          <div className="events_page--event__date"><i>{dayjs(event.date).format('DD. MM. YYYY')}</i></div>
+          <div className="events_page--event__date">
+            <i>{dayjs(event.date).format("DD. MM. YYYY")}</i>
+          </div>
         </div>
-        <div className="events_page--event__desc">
-            {event.description}
-        </div>
+        <div className="events_page--event__desc">{event.description}</div>
         <div className="events_page--event__buttons">
-            {/* <button className="small-button button-edit">
+          {/* <button className="small-button button-edit">
                 Upravit
             </button> */}
-            <button className="small-button button-delete" onClick={() => deleteEventHandler(event._id)}>
-                Odstranit
-            </button>
+          <button
+            className="small-button button-delete"
+            onClick={() => deleteEventHandler(event._id)}
+          >
+            Odstranit
+          </button>
         </div>
       </li>
     ));

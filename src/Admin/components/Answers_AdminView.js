@@ -11,16 +11,18 @@ const Answers_AdminView = ({ questionId }) => {
 
   useEffect(() => {
     const fetchAnswers = async () => {
-      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/api/answers-of-question/${questionId}`,
-        "GET",
-        null,
-        {
-          "Content-type": "application/json",
-          Authorization: "Bearer " + auth.token,
-        }
-      );
-      setLoadedAnswers(responseData);
+      try {
+        const responseData = await sendRequest(
+          `${process.env.REACT_APP_BACKEND_URL}/api/answers-of-question/${questionId}`,
+          "GET",
+          null,
+          {
+            "Content-type": "application/json",
+            Authorization: "Bearer " + auth.token,
+          }
+        );
+        setLoadedAnswers(responseData);
+      } catch (err) {}
     };
 
     fetchAnswers();

@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
+
+import ErrorModal from "../../shared/components/Error/ErrorModal";
 
 // Hooks
 import { useHttp } from "../../hooks/http-hook";
 
+import { AuthContext } from '../../contexts/AuthContext'
+
 const SignupPupilPage = () => {
+  const auth = useContext(AuthContext);
   const history = useHistory();
   const [responseMsg, setResponseMsg] = useState('');
-  const { sendRequest, error } = useHttp();
+  const { sendRequest, error, clearError } = useHttp();
 
   const formInitialValues = {
     username: "",
@@ -26,10 +31,11 @@ const SignupPupilPage = () => {
         JSON.stringify(values),
         {
           "content-type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
         setResponseMsg(response.msg)
-        // setTimeout(() => history.push('/'), 1000)
+        setTimeout(() => history.push('/'), 1200)
     } catch (err) {}
   };
   return (
@@ -76,9 +82,10 @@ const SignupPupilPage = () => {
           <button className="button-submit" type="submit">
             Registrace
           </button>
-          <p className="responseMsg">{responseMsg}{error}</p>
+          <p className="responseMsg">{responseMsg}</p>
         </Form>
       </Formik>
+      {error && <ErrorModal error={error} onClear={clearError}/>}
     </div>
   );
 };

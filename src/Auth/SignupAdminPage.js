@@ -2,12 +2,14 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import { useHistory } from "react-router-dom";
 
+import ErrorModal from "../shared/components/Error/ErrorModal";
+
 // Hooks
 import { useHttp } from "../hooks/http-hook";
 
 const SignupAdminPage = () => {
   const history = useHistory();
-  const { sendRequest } = useHttp();
+  const { sendRequest, error, clearError } = useHttp();
 
   const formInitialValues = {
     username: "",
@@ -43,6 +45,7 @@ const SignupAdminPage = () => {
           <button type="submit">Registrace</button>
         </Form>
       </Formik>
+      {error && <ErrorModal error={error} onClear={clearError} />}
     </div>
   );
 };
